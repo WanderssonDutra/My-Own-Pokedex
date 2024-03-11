@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 
 namespace Teste2.Models
 {
@@ -16,18 +17,20 @@ namespace Teste2.Models
             Console.WriteLine("===================\nGLOBAL POKEDEX\n===================");
             foreach (Pokemon pokemons in PokemonRegistered)
             {
-                if (count3 == 9)
+
+                if (count3 < 9)
+                    count3++;
+                else if (count2 < 9)
                 {
                     count2++;
                     count3 = 0;
                 }
-                if (count2 == 9)
+                else
                 {
+                    count++;
+                    count3 = 0;
                     count2 = 0;
-                    if (count3 == 9)
-                        count++;
                 }
-                count3++;
                 Console.WriteLine($"\n===============\nNo.{count}{count2}{count3} {pokemons.Name}\n===============");
             }
         }
@@ -54,6 +57,37 @@ namespace Teste2.Models
                     }
                     else
                         RegionalPokedex[count].RegionalPokemon.Add(pokemon);
+                }
+            }
+        }
+
+        public void ShowRegionalPokedex(string readResult, List<string> countRegionalPokedex)
+        {
+            for (int count = 0; count < RegionalPokedex.Count; count++)
+            {
+                if (readResult == countRegionalPokedex[count])
+                {
+                    int count1 = 0, count2 = 0, count3 = 0;
+                    Console.WriteLine($"===============\n{RegionalPokedex[count].RegionalPokedexName.ToUpper()} POKEDEX\n===============");
+                    for(int countRegionalPokemons = 0; countRegionalPokemons < RegionalPokedex[count].RegionalPokemon.Count; countRegionalPokemons++)
+                    {
+                    if (count3 < 9)
+                        count3++;
+                    else if (count2 < 9)
+                    {
+                        count2++;
+                        count3 = 0;
+                    }
+                    else
+                    {
+                        count1++;
+                        count2 = 0;
+                        count3 = 0;
+                    }
+                    
+                        Console.WriteLine($"No.{count1}{count2}{count3} {RegionalPokedex[count].RegionalPokemon[countRegionalPokemons].Name}");
+                    }
+                    
                 }
             }
         }

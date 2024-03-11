@@ -13,7 +13,7 @@ while (endTask)
     Pokemon pokemon = new Pokemon();
     RegionalPokedex regionalPokedex = new RegionalPokedex();
     regionalPokedex.RegionalPokemon = new List<Pokemon>();
-    string menu = "1. Look at the global pokedex.\n2. Add a pokemon to the global pokedex.\n3. create a regional pokedex.\n4. Add a pokemon to the regional pokedex.\n5. End the procces.";
+    string menu = "1. Look at the pokedex.\n2. Add a pokemon to the global pokedex.\n3. create a regional pokedex.\n4. Add a pokemon to the regional pokedex.\n5. End the procces.";
     Console.WriteLine(menu);
     string readResult = Console.ReadLine();
     Console.Clear();
@@ -21,7 +21,20 @@ while (endTask)
     switch (readResult)
     {
         case "1":
+            int countOptions = 2;
+            List<string> countRegionalPokedex = new List<string>();
+            Console.WriteLine("1. GLOBAL\n");
+            foreach(RegionalPokedex regional in pokedex.RegionalPokedex)
+            {
+                Console.WriteLine($"{countOptions}. {regional.RegionalPokedexName}");
+                countRegionalPokedex.Add(Convert.ToString(countOptions));
+                countOptions++;
+            }
+            readResult = Console.ReadLine();
+            if(readResult == "1")
             pokedex.ShowGlobalPokedex();
+            else
+                pokedex.ShowRegionalPokedex(readResult, countRegionalPokedex);
             break;
         case "2":
             pokemon.RegisterPokemon();
@@ -117,6 +130,7 @@ while (endTask)
                             if (readResult == "1")
                             {
                                 pokemon.RegisterPokemon();
+                                regionalPokedex.AddingToPrivateRegionalPokemon = pokemon;
                                 //If the global pokedex has no pokemons registered, then register the pokemon that will be registered in the regional pokedex as well.
                                 if (!pokemon.Canceled)
                                 {
@@ -166,5 +180,4 @@ while (endTask)
             break;
 
     }
-
 }

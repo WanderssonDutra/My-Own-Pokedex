@@ -26,3 +26,4 @@ C:\VsCodeProjects\Pokedex\obj\Debug\net8.0\refint\Teste2.dll
 C:\VsCodeProjects\Pokedex\obj\Debug\net8.0\Teste2.pdb
 C:\VsCodeProjects\Pokedex\obj\Debug\net8.0\Teste2.genruntimeconfig.cache
 C:\VsCodeProjects\Pokedex\obj\Debug\net8.0\ref\Teste2.dll
+C:\VsCodeProjects\Pokedex\obj\Debug\net8.0\Teste2.sourcelink.json
