@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace Teste2.Models
 {
@@ -116,7 +117,7 @@ namespace Teste2.Models
             set
             {
                 if (type1 == value)
-                   Console.WriteLine("The pokémon can't has the same type twice.");
+                    Console.WriteLine("The pokémon can't has the same type twice.");
                 else if (String.IsNullOrEmpty(value))
                     type2 = value;
                 else
@@ -184,6 +185,8 @@ namespace Teste2.Models
                     }
             }
         }
+
+        public List<string> RegionalAreas { get; set; }
         public bool Canceled { get; set; }
         public void RegisterPokemon()
         {
@@ -221,11 +224,11 @@ namespace Teste2.Models
                         Console.WriteLine("Enter the types of the pokemon: \nOBS: A pokemon can has one or two types.\n");
                         Console.Write("FIRST TYPE:");
                         Type1 = Console.ReadLine().ToUpper().Trim();
-                        if(!String.IsNullOrEmpty(Type1))
+                        if (!String.IsNullOrEmpty(Type1))
                         {
-                        Console.Write("SECOND TYPE:");
-                        Type2 = Console.ReadLine().ToUpper().Trim();
-                        Console.Clear();
+                            Console.Write("SECOND TYPE:");
+                            Type2 = Console.ReadLine().ToUpper().Trim();
+                            Console.Clear();
                         }
                         Console.Clear();
                         break;
