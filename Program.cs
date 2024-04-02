@@ -4,6 +4,7 @@ using Teste2.Models;
 Pokedex pokedex = new Pokedex();
 pokedex.PokemonRegistered = new List<Pokemon>();
 pokedex.RegionalPokedex = new List<RegionalPokedex>();
+List<string> countRegionalPokedex;
 bool endTask = true;
 /*The loop shows a menu with options that interact with the classes. the variable readResult is used to receive the input for the most part of the loop. The classes points everytime the loop iterate to a new reference address so the regional pokedexes, pokemons and regional areas that are created doesn't point to the same address and register the same pokemons.*/
 while (endTask)
@@ -25,15 +26,8 @@ while (endTask)
     switch (readResult)
     {
         case "1":
-            int countOptions = 2;
-            List<string> countRegionalPokedex = new List<string>();
             Console.WriteLine("1. GLOBAL\n");
-            foreach (RegionalPokedex regional in pokedex.RegionalPokedex)
-            {
-                Console.WriteLine($"{countOptions}. {regional.RegionalPokedexName}");
-                countRegionalPokedex.Add(Convert.ToString(countOptions));
-                countOptions++;
-            }
+            countRegionalPokedex = pokedex.RegionalPokedexList();
             readResult = Console.ReadLine();
             if (readResult == "1")
                 pokedex.ShowGlobalPokedex();
@@ -98,25 +92,14 @@ while (endTask)
             //Verify if there is at least one regional pokedex to be able to add pokemons to the regional pokedex.
             if (!(pokedex.RegionalPokedex.Capacity == 0))
             {
-                int count = 0;
-                List<string> regionNumber = new List<string>();
-                /*This foreach write in the Console The names of the regional pokedexes based on the numbers of pokedexes names provided in the Switch-case 3. Right after the foreach, enter the name of the regional pokedex.*/
-                foreach (RegionalPokedex regionalPokedexes in pokedex.RegionalPokedex)
-                {
-                    count++;
-                    regionNumber.Add(Convert.ToString(count));
-                    Console.WriteLine($"{count}. {regionalPokedexes.RegionalPokedexName}");
-                }
+                countRegionalPokedex = pokedex.RegionalPokedexList(pokedexListHasNoGlobal: true);
                 readResult = Console.ReadLine();
                 Console.Clear();
-                /*Iterates through each regional pokedex created. If the regional pokedex name matches the name provided by the value of variable readResult, then regionName receives the name of the pokedex.*/
+                /*Iterates through each regional pokedex created. If the regional pokedex name matches the name provided by the value of variable readResult, then countRegionalPokedex receives the name of the pokedex.*/
                 for (int count1 = 0; count1 < pokedex.RegionalPokedex.Count; count1++)
                 {
-                    string regionName = "";
-                    if (readResult == regionNumber[count1])
+                    if (readResult == countRegionalPokedex[count1])
                     {
-                        regionName = pokedex.RegionalPokedex[count1].RegionalPokedexName;
-
                         if (pokedex.RegionalPokedex[count1].RegionalAreas == null)
                         {
                             Console.WriteLine("1. Add a new pokemon.\n2. Choose from the global pokedex.");
@@ -132,12 +115,12 @@ while (endTask)
                                     {
                                         //Verify if the pokemon the user is trying to register in the regional pokedex is already in the global pokedex.
                                         if (!pokedex.IsInTheGlobal(pokemon))
-                                            pokedex.RegisterRegionalPokedex(pokemon, regionName);
+                                            pokedex.RegisterRegionalPokedex(pokemon, pokedex.RegionalPokedex[count1].RegionalPokedexName);
                                     }
                                     else
                                     {
                                         pokedex.PokemonRegistered.Add(pokemon);
-                                        pokedex.RegisterRegionalPokedex(pokemon, regionName);
+                                        pokedex.RegisterRegionalPokedex(pokemon, pokedex.RegionalPokedex[count1].RegionalPokedexName);
                                     }
                             }
                             else
@@ -171,14 +154,14 @@ while (endTask)
                                         if (!pokedex.IsInTheGlobal(pokemon))
                                         {
                                             pokemon.RegionalAreas = new List<string>();
-                                            pokemon.RegionalAreas.Add(pokedex.RegisterPokemonInRegionalArea(readAreaResult, countAreasOptions, regionName));
+                                            pokemon.RegionalAreas.Add(pokedex.RegisterPokemonInRegionalArea(readAreaResult, countAreasOptions, pokedex.RegionalPokedex[count1].RegionalPokedexName));
                                         }
                                     }
                                     else
                                     {
                                         pokedex.PokemonRegistered.Add(pokemon);
                                         pokemon.RegionalAreas = new List<string>();
-                                        pokemon.RegionalAreas.Add(pokedex.RegisterPokemonInRegionalArea(readAreaResult, countAreasOptions, regionName));
+                                        pokemon.RegionalAreas.Add(pokedex.RegisterPokemonInRegionalArea(readAreaResult, countAreasOptions, pokedex.RegionalPokedex[count1].RegionalPokedexName));
                                     }
 
                                 }

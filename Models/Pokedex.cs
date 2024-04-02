@@ -164,16 +164,8 @@ namespace Teste2.Models
 
         public void OrganizePokedex()
         {
-            int countOptions = 2;
-            List<int> regionalPokedexOptions = new List<int>();
             Console.WriteLine("1. Global");
-
-            foreach (RegionalPokedex regionalPokedex in RegionalPokedex)
-            {
-
-                Console.WriteLine($"{countOptions}{regionalPokedex.RegionalPokedexName}");
-                regionalPokedexOptions.Add(countOptions++);
-            }
+            List <string> countRegionalPokedex = RegionalPokedexList();
             string readResult = Console.ReadLine();
             if (readResult == "1")
             {
@@ -241,6 +233,20 @@ namespace Teste2.Models
                 else
                     Console.WriteLine("A number from the pokedex must be provided.");
             }
+        }
+        public List<string> RegionalPokedexList(bool pokedexListHasNoGlobal = false)
+        {
+            int countOptions = 2;
+            List<string> countRegionalPokedex = new List<string>();
+            if (pokedexListHasNoGlobal)
+                countOptions = 1;
+            foreach (RegionalPokedex regional in RegionalPokedex)
+            {
+                Console.WriteLine($"{countOptions}. {regional.RegionalPokedexName}");
+                countRegionalPokedex.Add(Convert.ToString(countOptions));
+                countOptions++;
+            }
+            return countRegionalPokedex;
         }
     }
 }
