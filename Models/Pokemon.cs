@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 
 namespace Teste2.Models
 {
+    //A class with all the properties of a pokemon such as type, description and name.
     public class Pokemon
     {
         private string name, description, type1, type2;
@@ -186,8 +187,10 @@ namespace Teste2.Models
             }
         }
 
-        public List<string> RegionalAreas { get; set; }
         public bool Canceled { get; set; }
+        /// <summary>
+        /// Register a pokemon with a name, type and description in the Pokemon class.
+        /// </summary>
         public void RegisterPokemon()
         {
             string readResult;

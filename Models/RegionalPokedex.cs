@@ -1,5 +1,6 @@
 using System;
 using System.Dynamic;
+using System.Formats.Asn1;
 using System.Net;
 
 namespace Teste2.Models
@@ -9,6 +10,7 @@ namespace Teste2.Models
         private string regionalPokedexName;
         private List<Pokemon> regionalPokemon = new List<Pokemon>();
         public string[] RegionalAreas { get; set; }
+        public List<List<Pokemon>> PokemonsInAreas = new List<List<Pokemon>>();
         public string RegionalPokedexName
         {
             get => regionalPokedexName;
@@ -38,6 +40,9 @@ namespace Teste2.Models
             {
                 Console.Write($"AREA {count + 1}: ");
                 RegionalAreas[count] = Console.ReadLine();
+
+                List<Pokemon> pokemonsInArea = new List<Pokemon>();
+                PokemonsInAreas.Add(pokemonsInArea);
             }
         }
     }

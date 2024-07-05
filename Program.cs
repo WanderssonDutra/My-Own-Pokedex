@@ -153,15 +153,13 @@ while (endTask)
                                         //Verify if the pokemon the user is trying to register in the regional pokedex is already in the global pokedex. if it is not, add it directly.
                                         if (!pokedex.IsInTheGlobal(pokemon))
                                         {
-                                            pokemon.RegionalAreas = new List<string>();
-                                            pokemon.RegionalAreas.Add(pokedex.RegisterPokemonInRegionalArea(readAreaResult, countAreasOptions, pokedex.RegionalPokedex[count1].RegionalPokedexName));
+                                            pokedex.RegisterPokemonInRegionalArea(readAreaResult, countAreasOptions, pokedex.RegionalPokedex[count1].RegionalPokedexName, pokemon);
                                         }
                                     }
                                     else
                                     {
                                         pokedex.PokemonRegistered.Add(pokemon);
-                                        pokemon.RegionalAreas = new List<string>();
-                                        pokemon.RegionalAreas.Add(pokedex.RegisterPokemonInRegionalArea(readAreaResult, countAreasOptions, pokedex.RegionalPokedex[count1].RegionalPokedexName));
+                                        pokedex.RegisterPokemonInRegionalArea(readAreaResult, countAreasOptions, pokedex.RegionalPokedex[count1].RegionalPokedexName, pokemon);
                                     }
 
                                 }
