@@ -48,219 +48,136 @@ namespace Teste2.Models
             get => type1;
             set
             {
-
-                switch (value)
+                string[] types = { "NORMAL", "FIRE", "WATER", "ELECTRIC", "GRASS", "ICE", "FIGHTING", "POISON", "GROUND", "FLYING", "PSYCHIC", "BUG", "ROCK", "GHOST", "DRAGON", "DARK", "STEEL", "FAIRY" };
+                if (String.IsNullOrEmpty(value))
                 {
-                    case "NORMAL":
+                    Console.WriteLine("The pokemon must has a type.");
+                    type1 = null; type2 = null;
+                    Console.ReadKey();
+                }
+                else
+                {
+                    bool isValid = false;
+                    foreach (string type in types)
+                        if (value == type)
+                            isValid = true;
+                    if(isValid)
                         type1 = value;
-                        break;
-                    case "FIRE":
-                        type1 = value;
-                        break;
-                    case "WATER":
-                        type1 = value;
-                        break;
-                    case "GRASS":
-                        type1 = value;
-                        break;
-                    case "FIGHTING":
-                        type1 = value;
-                        break;
-                    case "PSYCHIC":
-                        type1 = value;
-                        break;
-                    case "ELECTRIC":
-                        type1 = value;
-                        break;
-                    case "POISON":
-                        type1 = value;
-                        break;
-                    case "ICE":
-                        type1 = value;
-                        break;
-                    case "GHOST":
-                        type1 = value;
-                        break;
-                    case "FAIRY":
-                        type1 = value;
-                        break;
-                    case "ROCK":
-                        type1 = value;
-                        break;
-                    case "GROUND":
-                        type1 = value;
-                        break;
-                    case "BUG":
-                        type1 = value;
-                        break;
-                    case "FLYING":
-                        type1 = value;
-                        break;
-                    case "STEEL":
-                        type1 = value;
-                        break;
-                    case "DRAGON":
-                        type1 = value;
-                        break;
-                    case "DARK":
-                        type1 = value;
-                        break;
-                    default:
-                        Console.WriteLine("The type doesn't exist. Please, give a valid type to the pokémon.");
+                    else
+                    {
+                        type1 = null; type2 = null;
+                        Console.WriteLine("The type doesn't exist.");
                         Console.ReadKey();
-                        break;
+                    }
                 }
             }
         }
-        public string Type2
+    public string Type2
+    {
+        get => type2;
+        set
         {
-            get => type2;
-            set
-            {
-                if (type1 == value)
-                    Console.WriteLine("The pokémon can't has the same type twice.");
+            string[] types = { "NORMAL", "FIRE", "WATER", "ELECTRIC", "GRASS", "ICE", "FIGHTING", "POISON", "GROUND", "FLYING", "PSYCHIC", "BUG", "ROCK", "GHOST", "DRAGON", "DARK", "STEEL", "FAIRY" };
+                if(value == type1)
+                {
+                    type1 = null; type2 = null;
+                    Console.WriteLine("The pokemon cannot has the same type twice.");
+                    Console.ReadKey();
+                }
                 else if (String.IsNullOrEmpty(value))
                     type2 = value;
                 else
-                    switch (value)
-                    {
-                        case "NORMAL":
-                            type2 = value;
-                            break;
-                        case "FIRE":
-                            type2 = value;
-                            break;
-                        case "WATER":
-                            type2 = value;
-                            break;
-                        case "GRASS":
-                            type2 = value;
-                            break;
-                        case "FIGHTING":
-                            type2 = value;
-                            break;
-                        case "PSYCHIC":
-                            type2 = value;
-                            break;
-                        case "ELECTRIC":
-                            type2 = value;
-                            break;
-                        case "POISON":
-                            type2 = value;
-                            break;
-                        case "ICE":
-                            type2 = value;
-                            break;
-                        case "GHOST":
-                            type2 = value;
-                            break;
-                        case "FAIRY":
-                            type2 = value;
-                            break;
-                        case "ROCK":
-                            type2 = value;
-                            break;
-                        case "GROUND":
-                            type2 = value;
-                            break;
-                        case "BUG":
-                            type2 = value;
-                            break;
-                        case "FLYING":
-                            type2 = value;
-                            break;
-                        case "STEEL":
-                            type2 = value;
-                            break;
-                        case "DRAGON":
-                            type2 = value;
-                            break;
-                        case "DARK":
-                            type2 = value;
-                            break;
-                        default:
-                            type1 = null;
-                            Console.WriteLine("The type doesn't exist. Please, give a valid type to the pokémon.");
-                            Console.ReadKey();
-                            break;
-                    }
-            }
-        }
-
-        public bool Canceled { get; set; }
-        /// <summary>
-        /// Register a pokemon with a name, type and description in the Pokemon class.
-        /// </summary>
-        public void RegisterPokemon()
-        {
-            string readResult;
-            bool endTask = true;
-            while (endTask)
-            {
-                string menu = "1. Register the pokemon's name.\n2. Add a description.\n3. Add the types of the pokemon.\n4. Cancel the register.";
-                Console.WriteLine("====================================\nRegistering a pokemon in the Pokedex\n====================================");
-
-                if (!String.IsNullOrEmpty(name))
-                    menu = menu.Replace("1. Register the pokemon's name.", "1. Change the pokemon's name.");
-                if (!String.IsNullOrEmpty(description))
-                    menu = menu.Replace("2. Add a description.", "2. Change the description");
-                if (!String.IsNullOrEmpty(Type1))
-                    menu = menu.Replace("3. Add the types of the pokemon.", "3. Change the types of the pokemon.");
-                if (!(String.IsNullOrEmpty(name)) && !(String.IsNullOrEmpty(description)) && !(String.IsNullOrEmpty(Type1)))
-                    menu += "\n5. Finish the registration.";
-                Console.WriteLine(menu);
-                readResult = Console.ReadLine();
-
-                switch (readResult)
                 {
-                    case "1":
-                        Console.WriteLine("Enter the pokemon's name:\n");
-                        Name = Console.ReadLine().ToUpper().Trim();
+                    bool isValid = false;
+                    foreach (string type in types)
+                        if (value == type)
+                            isValid = true;
+                    if(isValid)
+                        type2 = value;
+                    else
+                    {
+                        type1 = null; type2 = null;
+                        Console.WriteLine("The type doesn't exist.");
+                        Console.ReadKey();
+                    }
+                }
+        }
+    }
+
+    public bool Canceled { get; set; }
+    /// <summary>
+    /// Register a pokemon with a name, type and description in the Pokemon class.
+    /// </summary>
+    public void RegisterPokemon()
+    {
+        string readResult;
+        bool endTask = true;
+        while (endTask)
+        {
+            string menu = "1. Register the pokemon's name.\n2. Add a description.\n3. Add the types of the pokemon.\n4. Cancel the register.";
+            Console.WriteLine("====================================\nRegistering a pokemon in the Pokedex\n====================================");
+
+            if (!String.IsNullOrEmpty(name))
+                menu = menu.Replace("1. Register the pokemon's name.", "1. Change the pokemon's name.");
+            if (!String.IsNullOrEmpty(description))
+                menu = menu.Replace("2. Add a description.", "2. Change the description");
+            if (!String.IsNullOrEmpty(Type1))
+                menu = menu.Replace("3. Add the types of the pokemon.", "3. Change the types of the pokemon.");
+            if (!(String.IsNullOrEmpty(name)) && !(String.IsNullOrEmpty(description)) && !(String.IsNullOrEmpty(Type1)))
+                menu += "\n5. Finish the registration.";
+            Console.WriteLine(menu);
+            readResult = Console.ReadLine();
+
+            switch (readResult)
+            {
+                case "1":
+                    Console.WriteLine("Enter the pokemon's name:\n");
+                    Name = Console.ReadLine().ToUpper().Trim();
+                    Console.Clear();
+                    break;
+                case "2":
+                    Console.WriteLine("Enter the pokemon description:\n");
+                    Description = Console.ReadLine();
+                    Console.Clear();
+                    break;
+                case "3":
+                    Console.WriteLine("Enter the types of the pokemon: \nOBS: A pokemon can has one or two types.\n");
+                    Console.Write("FIRST TYPE:");
+                    Type1 = Console.ReadLine().ToUpper().Trim();
+                    if (!String.IsNullOrEmpty(Type1))
+                    {
+                        Console.Write("SECOND TYPE:");
+                        Type2 = Console.ReadLine().ToUpper().Trim();
                         Console.Clear();
-                        break;
-                    case "2":
-                        Console.WriteLine("Enter the pokemon description:\n");
-                        Description = Console.ReadLine();
-                        Console.Clear();
-                        break;
-                    case "3":
-                        Console.WriteLine("Enter the types of the pokemon: \nOBS: A pokemon can has one or two types.\n");
-                        Console.Write("FIRST TYPE:");
-                        Type1 = Console.ReadLine().ToUpper().Trim();
-                        if (!String.IsNullOrEmpty(Type1))
-                        {
-                            Console.Write("SECOND TYPE:");
-                            Type2 = Console.ReadLine().ToUpper().Trim();
-                            Console.Clear();
-                        }
-                        Console.Clear();
-                        break;
-                    case "4":
-                        Console.WriteLine("Pokemon Registration canceled.");
-                        Canceled = true;
+                    }
+                    Console.Clear();
+                    break;
+                case "4":
+                    Console.WriteLine("Pokemon Registration canceled.");
+                    Canceled = true;
+                    endTask = false;
+                    break;
+                case "5":
+                    if (menu.Contains("\n5. Finish the registration."))
+                    {
+                        Console.WriteLine($"Registering {Name}...");
+                        Canceled = false;
                         endTask = false;
-                        break;
-                    case "5":
-                        if (menu.Contains("\n5. Finish the registration."))
-                        {
-                            Console.WriteLine($"Registering {Name}...");
-                            Canceled = false;
-                            endTask = false;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Invalid Command.");
-                            Console.ReadKey();
-                            Console.Clear();
-                        }
-                        break;
-                    default:
+                    }
+                    else
+                    {
                         Console.WriteLine("Invalid Command.");
                         Console.ReadKey();
                         Console.Clear();
-                        break;
-                }
+                    }
+                    break;
+                default:
+                    Console.WriteLine("Invalid Command.");
+                    Console.ReadKey();
+                    Console.Clear();
+                    break;
             }
         }
     }
+}
 }
